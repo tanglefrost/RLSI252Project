@@ -1,7 +1,7 @@
 # RLSI252Project
 Using for the course
 
-The multi - armed bandit problem is a classic model for balancing exploration and exploitation in uncertain decision - making environments. Traditional online learning methods assume that learners start from scratch to collect data. However, in practical scenarios, learners often have access to some historical data. The OTO algorithm proposed in the paper "Balancing optimism and pessimism in offline - to - online learning" targets this offline - to - online learning scenario, aiming to balance optimistic and pessimistic strategies to meet the needs of different learning time horizons.
+The multi - armed bandit problem is a classic model for balancing exploration and exploitation in uncertain decision - making environments. Traditional online learning methods assume that learners start from scratch to collect data. However, in practical scenarios, learners often have access to some historical data. The OTO algorithm proposed in the paper "Balancing optimism and pessimism in offline - to - online learning"(https://arxiv.org/pdf/2502.08259) targets this offline - to - online learning scenario, aiming to balance optimistic and pessimistic strategies to meet the needs of different learning time horizons.
 
 Objectives:
 1.	To deeply understand the principles and mechanisms of the OTO algorithm, including how it dynamically adjusts its exploration strategy based on offline data.

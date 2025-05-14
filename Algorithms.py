@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 def calc_beta(m_list, delta, K):
     m = np.sum(m_list)
-    m_ratio = np.sqrt(np.array(m_list) / m + 1e-12)  # Avoid zero
+    m_ratio = np.sqrt(np.array(m_list)) / m
     return m_ratio.sum() * np.sqrt(2 * np.log(K / delta))
 
 def conf_bound(n, K, delta):

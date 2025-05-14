@@ -1,6 +1,11 @@
 date 5/10/2025
 We have finished reading the paper and roughly clarified the project framework.
 We have done the preliminary coding of the algorithm. Please check the file 'Algorithms'.
+
 date 5/14/2025
-We fixed a critical bug in the algorithm file.  
-We have completed the writing of the file `Run_Bandit`, which, when combined with the algorithm file, fully implements the OTO algorithm described in the original paper. However, at present, we have only implemented the case where the horizon is known. We will first check for bugs and other issues. If no errors are found, we will then proceed to write the code for the case where the horizon is unknown.
+We fixed a critical bug in the 'Algorithms' file.  
+We have completed the writing of the file 'Run_Bandit',
+which, when combined with the algorithm file, fully implements the OTO algorithm described in the original paper. 
+However, at present, we have only implemented the case where the horizon is known. 
+We will first check for bugs and other issues. 
+If no errors are found, we will then proceed to write the code for the case where the horizon is unknown.

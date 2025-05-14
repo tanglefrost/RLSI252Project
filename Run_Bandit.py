@@ -17,7 +17,7 @@ def run_bandit(instance_means, m_list, T, algorithm, alpha=0.2):
     instance_means: array, arm true means
     m_list: list, offline samples per arm
     T: horizon
-    algorithm: 'UCB', 'LCB', 'OTO' or 'SoftOTO'
+    algorithm: 'UCB', 'LCB', 'OTO'
     '''
     K = len(instance_means)
     delta = 1 / (T ** 2)
@@ -41,10 +41,8 @@ def run_bandit(instance_means, m_list, T, algorithm, alpha=0.2):
     n = n_init.copy()
     # regret记录
     history_regret = []
-    if algorithm == 'OTO':
-        oto = Algorithms.OTOBandit(instance_means, m_list, T, alpha)
-    elif algorithm == 'SoftOTO':
-        oto = Algorithms.SoftSwitchOTO(instance_means, m_list, T, alpha, temperature=1.0)
+    oto = Algorithms.OTOBandit(instance_means, m_list, T, alpha)
+
     for t in range(T):
         if algorithm == 'UCB':
             mu_hat = np.divide(s, n, out=np.zeros_like(n, dtype=float), where=n>0)
@@ -75,7 +73,7 @@ def run_bandit_UH(instance_means, m_list, T, algorithm, alpha=0.2,):
     instance_means: array, arm true means
     m_list: list, offline samples per arm
     T: horizon
-    algorithm: 'UCB', 'LCB', 'OTO' or 'SoftOTO'
+    algorithm: 'UCB', 'LCB', 'OTO'
     '''
     K = len(instance_means)
     delta = 1 / (T ** 2)
@@ -99,10 +97,7 @@ def run_bandit_UH(instance_means, m_list, T, algorithm, alpha=0.2,):
     n = n_init.copy()
     # regret记录
     history_regret = []
-    if algorithm == 'OTO':
-        oto = Algorithms.OTOBandit(instance_means, m_list, 2, alpha)
-    elif algorithm == 'SoftOTO':
-        oto = Algorithms.SoftSwitchOTO(instance_means, m_list, 2, alpha, temperature=1.0)
+    oto = Algorithms.OTOBandit(instance_means, m_list, 2, alpha)
     for t in range(T):
         if algorithm == 'UCB':
             mu_hat = np.divide(s, n, out=np.zeros_like(n, dtype=float), where=n>0)

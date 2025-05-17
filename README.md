@@ -14,4 +14,4 @@ Expected Outcomes:
 
 1.	Successfully implement the OTO algorithm and verify that its performance matches the description in the paper through experiments.
 2.	Replicate the key experimental results in the paper, including the performance of the OTO algorithm under different offline data distributions and time horizons, as well as comparative analyses with the UCB and LCB algorithms.
-3.	Attempt to propose an improvement plan for the OTO algorithm, verify it through experiments, and provide new ideas and methods for the development of the offline - to - online learning field.
+3.	Attempt to propose an improvement plan for the OTO algorithm, verify it through experiments, and try providing new ideas and methods.

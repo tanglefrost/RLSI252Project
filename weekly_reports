@@ -9,3 +9,8 @@ which, when combined with the algorithm file, fully implements the OTO algorithm
 However, at present, we have only implemented the case where the horizon is known. 
 We will first check for bugs and other issues. 
 If no errors are found, we will then proceed to write the code for the case where the horizon is unknown.
+
+date 5/20/2025
+We have completed the implementation of the OTO algorithm under the known horizon scenario, which corresponds to the setup of Experiment 1 in the paper, 
+and have successfully reproduced the experimental results. All bugs have been fixed. 
+Next, we will proceed to reproduce Experiment 2, which involves the implementation of the code under the unknown horizon scenario.

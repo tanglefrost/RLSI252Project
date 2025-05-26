@@ -14,3 +14,8 @@ date 5/20/2025
 We have completed the implementation of the OTO algorithm under the known horizon scenario, which corresponds to the setup of Experiment 1 in the paper, 
 and have successfully reproduced the experimental results. All bugs have been fixed. 
 Next, we will proceed to reproduce Experiment 2, which involves the implementation of the code under the unknown horizon scenario.
+
+date 5/26/2025
+We have completed the code implementation for the unknown horizon scenario and have preliminarily passed the tests. 
+Now we can say that we have fully reproduced the experimental results of the original paper. 
+Next, we will attempt to make some minor improvements to the original algorithm and conduct further tests.

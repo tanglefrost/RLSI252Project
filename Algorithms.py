@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.special import expit  # sigmoid
 
 
 def calc_beta(m_list, delta, K):
@@ -33,6 +34,8 @@ class OTOBandit:
         self.T = T
         self.alpha = alpha
         self.delta = 1 / (T ** 2)
+        #test
+        self.m=np.sum(m_list)
         # Offline statistics
         self.n = np.zeros(self.K)
         self.s = np.zeros(self.K)
@@ -54,7 +57,7 @@ class OTOBandit:
 
     def step(self, t, flag=True):
         if flag == False:
-            self.delta = 1 / ((t+1) ** 2)
+            self.delta = 0.01 / ((t+1) ** 2)
         mu_hat = np.zeros(self.K)
         for i in range(self.K):
             if self.n[i] > 0:

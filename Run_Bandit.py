@@ -17,7 +17,7 @@ def run_bandit(instance_means, m_list, T, algorithm, alpha=0.2):
     instance_means: array, arm true means
     m_list: list, offline samples per arm
     T: horizon
-    algorithm: 'UCB', 'LCB', 'OTO'
+    algorithm: 'UCB', 'LCB', 'OTO' or 'SoftOTO'
     '''
     K = len(instance_means)
     delta = 1 / (T ** 2)
@@ -60,6 +60,8 @@ def run_bandit(instance_means, m_list, T, algorithm, alpha=0.2):
             i_star = np.argmax(lcb)
         elif algorithm == 'OTO':
             i_star, reward = oto.step(t)
+        elif algorithm == 'SoftOTO':
+            i_star, reward = oto.step(t)
         if algorithm in ['UCB', 'LCB']:
             reward = np.random.binomial(1, instance_means[i_star])
             n[i_star] += 1
@@ -73,7 +75,7 @@ def run_bandit_UH(instance_means, m_list, T, algorithm, alpha=0.6):
     instance_means: array, arm true means
     m_list: list, offline samples per arm
     T: horizon
-    algorithm: 'UCB', 'LCB', 'OTO'
+    algorithm: 'UCB', 'LCB', 'OTO' or 'SoftOTO'
     '''
     K = len(instance_means)
     delta = 1 / (T ** 2)
@@ -115,6 +117,10 @@ def run_bandit_UH(instance_means, m_list, T, algorithm, alpha=0.6):
             lcb[n == 0] = -1
             i_star = np.argmax(lcb)
         elif algorithm == 'OTO':
+            if (t+1)>oto.T:
+                oto.T=2*oto.T
+            i_star, reward = oto.step(t, False)
+        elif algorithm == 'SoftOTO':
             if (t+1)>oto.T:
                 oto.T=2*oto.T
             i_star, reward = oto.step(t, False)

@@ -82,3 +82,42 @@ class OTOBandit:
         self.n[i_star] += 1
         self.s[i_star] += reward
         return i_star, reward
+
+class SoftSwitchOTO(OTOBandit):
+    def __init__(self, means, m_list, T=2, alpha=0.2, temperature=2.0):
+        super().__init__(means, m_list, T, alpha)
+        self.temperature = temperature
+
+    def step(self, t, flag = True):
+        if flag == False:
+            self.delta = 0.01 / ((t+1) ** 2)
+        mu_hat = np.zeros(self.K)
+        for i in range(self.K):
+            if self.n[i] > 0:
+                mu_hat[i] = self.s[i] / self.n[i]
+            else:
+                mu_hat[i] = 0.0
+        cb = conf_bound(self.n, self.K, self.delta)
+        ucb = mu_hat + cb
+        lcb = mu_hat - cb
+        ucb[self.n == 0] = 1
+        lcb[self.n == 0] = -1
+        mu_max_ucb = np.max(ucb)
+        mu_max_lcb = np.max(lcb)
+        budget = (
+            np.sum(self.TU * (lcb - self.gamma))
+            + (mu_max_ucb - self.gamma)
+            + ((self.TL.sum() + self.T - (t + 1)) * self.alpha * self.beta)
+        )
+        # 用sigmoid将budget转为概率，temperature越大，越接近随机选择，temperature=1则与原算法基本无差异。
+        p_ucb = expit(budget / self.temperature)  # sigmoid
+        if np.random.rand() < p_ucb:
+            i_star = np.argmax(ucb)
+            self.TU[i_star] += 1
+        else:
+            i_star = np.argmax(lcb)
+            self.TL[i_star] += 1
+        reward = np.random.binomial(1, self.means[i_star])
+        self.n[i_star] += 1
+        self.s[i_star] += reward
+        return i_star, reward

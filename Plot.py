@@ -16,7 +16,7 @@ def plot_CertainH():
     for instance_idx, (means, label) in enumerate([(means1, 'Instance 1'), (means2, 'Instance 2')]):
         for horizon, color in zip([200, 2000], ['tab:blue', 'tab:orange']):
             regrets = {}
-            for alg in ['LCB', 'UCB', 'OTO']:
+            for alg in ['LCB', 'UCB', 'OTO', 'SoftOTO']:
                 vals = []
                 for rep in range(200):
                     vals.append(run_bandit(means, m_list, horizon, alg, alpha=0.2))
@@ -43,7 +43,7 @@ def plot_UnknownH():
     for instance_idx, (means, label) in enumerate([(means1, 'Instance 1'), (means2, 'Instance 2')]):
         for horizon, color in zip([200, 2000], ['tab:blue', 'tab:orange']):
             regrets = {}
-            for alg in ['LCB', 'UCB', 'OTO']:
+            for alg in ['LCB', 'UCB', 'OTO', 'SoftOTO']:
                 vals = []
                 for rep in range(200):
                     vals.append(run_bandit_UH(means, m_list, horizon, alg, alpha=0.6))
